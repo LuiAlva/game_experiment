@@ -18,13 +18,13 @@ public class PC_ActionAttack : Action
         timerFinish = false;
         timer = resetTime;
         active = true;
-        PC.Movement.SetSpeedActionMultiplier(1.8f);
+        PC.Speed.SetBaseSpeed(1.8f);
         PC.Resources.Health.Resource.ChangeCurrentAmount(1.8f);
     }
 
     public void End()
     {
-        PC.Movement.SetSpeedActionMultiplier(1f);
+        PC.Speed.SetBaseSpeed(1f);
         chargeActionComplete = false;
         active = false;
     }
@@ -46,7 +46,7 @@ public class PC_ActionAttack : Action
     void chargeAction()
     {
         Debug.Log("Charge Complete");
-        PC.Movement.SetSpeedActionMultiplier(2.6f);
+        PC.Speed.SetBaseSpeed(2.6f);
         chargeActionComplete = true;
     }
 }

@@ -17,7 +17,7 @@ public abstract class StateMachine
     public PC_Main PC;
     public State CurrentState = null;
     public bool IsSwimming;
-    protected Dictionary<string, State> statelist0 = null;
+    protected Dictionary<string, State> stateList = null;
 
 
     protected abstract void AddStates();

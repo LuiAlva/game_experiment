@@ -14,23 +14,23 @@ public class SM_MovementType : StateMachine
     //• Jump
     public SM_MovementType(PC_Main pc)
     {
-        statelist0 = new Dictionary<string, State>();
+        stateList = new Dictionary<string, State>();
         PC = pc;
         AddStates();
-        statelist0["Idle"].Start(this);
+        stateList["Idle"].Start(this);
     }
 
     public override void Update()
     {
-        if (PC.Movement.IsMoving) { ChangeState(statelist0["Moving"]); }
-        else { ChangeState(statelist0["Idle"]); }
+        if (PC.Movement.IsMoving) { ChangeState(stateList["Moving"]); }
+        else { ChangeState(stateList["Idle"]); }
     }
 
     protected override void AddStates()
     {
-        statelist0.Add("Idle", new PC_StateIdle());
-        statelist0.Add("Moving", new PC_StateMoving());
+        stateList.Add("Idle", new PC_StateIdle());
+        stateList.Add("Moving", new PC_StateMoving());
 
-        CurrentState = statelist0["Idle"];
+        CurrentState = stateList["Idle"];
     }
 }

@@ -8,6 +8,7 @@ public class SM_MovementSpeed : StateMachine
     //• Idle
     //• Move
     //• Dash
+    //• Sneak
     public SM_MovementSpeed(PC_Main pc)
     {
         PC = pc;
@@ -15,9 +16,9 @@ public class SM_MovementSpeed : StateMachine
     }
     protected override void AddStates()
     {
-        statelist0.Add("Idle", new PC_StateIdle());
-        statelist0.Add("Attacking", new PC_StateAttacking());
-        CurrentState = statelist0["Idle"];
+        stateList.Add("Idle", new PC_StateIdle());
+        stateList.Add("Move", new PC_StateAttacking());
+        CurrentState = stateList["Idle"];
     }
 
     public override void Update()

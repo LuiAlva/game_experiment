@@ -7,21 +7,16 @@ namespace PlayerCharacter
     public class PC_Movement
     {
         PC_Main PC;
+        PC_Speed Speed;
         Vector2 directionMovement;
-        float _speedRate;
-        float _speedActionMultiplier;
         Vector2 frozenDirection;
         float timerFrozenDirection;
         bool _isMoving;
 
-        //BonusStat Agility;
-        int Agility = 3;
-
         public PC_Movement(PC_Main pc)
         {
             PC = pc;
-            _speedRate = 1f;
-            _speedActionMultiplier = 1f;
+            Speed = pc.Speed;
             directionMovement = Vector2.zero;
             frozenDirection = directionMovement;
         }
@@ -29,8 +24,8 @@ namespace PlayerCharacter
         public void Update()
         {
             FindDirection();
-            PC.RigidBody.MovePosition((Vector2)PC.transform.position + (directionMovement * /*Agility.FinalValue*/ Agility * _speedRate * _speedActionMultiplier * Time.deltaTime));
-            PC.AnimatorBody.SetFloat("Velocity", directionMovement.sqrMagnitude * _speedRate);
+            PC.RigidBody.MovePosition((Vector2)PC.transform.position + (directionMovement * Speed.GetCurrentSpeed() * Time.deltaTime));
+            PC.AnimatorBody.SetFloat("Velocity", directionMovement.sqrMagnitude * 1); // Replace 1 with animation speed???
             //PC.AnimatorBody.SetFloat("Move X", directionMovement.x);
             //PC.AnimatorBody.SetFloat("Move Y", directionMovement.y);
         }
@@ -47,9 +42,6 @@ namespace PlayerCharacter
             }
             else { return false; }
         }
-
-        public void SetSpeedRate(float rate) { _speedRate = rate; }
-        public void SetSpeedActionMultiplier(float multiplier) { _speedActionMultiplier = multiplier; }
 
         public bool IsMoving => _isMoving;
 

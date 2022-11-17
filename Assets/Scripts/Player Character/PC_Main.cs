@@ -14,6 +14,7 @@ public class PC_Main : MonoBehaviour
     public PC_States States;
     public PC_Inputs Inputs;
     public PC_Movement Movement;
+    public PC_Speed Speed;
     public PC_Aim Aim;
     public Stats Stats;
     public PC_Resources Resources;
@@ -27,6 +28,7 @@ public class PC_Main : MonoBehaviour
         Stats.SetupStats(5, 3, 2, 4);
         Resources = new PC_Resources(this);
         States = new PC_States(this);
+        Speed = new PC_Speed(this);
         Movement = new PC_Movement(this);
         Aim = new PC_Aim(this);
     }
