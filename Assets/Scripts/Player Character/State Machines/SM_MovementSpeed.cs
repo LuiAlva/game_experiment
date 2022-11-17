@@ -5,9 +5,8 @@ using UnityEngine;
 public class SM_MovementSpeed : StateMachine
 {
     //Contains:
-    //• Idle
-    //• Move
-    //• Dash
+    //• Moderate
+    //• Hurry
     //• Sneak
     public SM_MovementSpeed(PC_Main pc)
     {
