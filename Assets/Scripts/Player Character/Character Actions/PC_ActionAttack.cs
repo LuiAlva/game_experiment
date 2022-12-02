@@ -18,13 +18,13 @@ public class PC_ActionAttack : Action
         timerFinish = false;
         timer = resetTime;
         active = true;
-        PC.Speed.SetBaseSpeed(1.8f);
+        PC.Speed.ChangeSpeedState(PC_Speed.SpeedType.Sneaky);
         PC.Resources.Health.Resource.ChangeCurrentAmount(1.8f);
     }
 
     public void End()
     {
-        PC.Speed.SetBaseSpeed(1f);
+        PC.Speed.ChangeSpeedState(PC_Speed.SpeedType.Leisurely);
         chargeActionComplete = false;
         active = false;
     }
@@ -46,7 +46,7 @@ public class PC_ActionAttack : Action
     void chargeAction()
     {
         Debug.Log("Charge Complete");
-        PC.Speed.SetBaseSpeed(2.6f);
+        PC.Speed.ChangeSpeedState(PC_Speed.SpeedType.Weary);
         chargeActionComplete = true;
     }
 }

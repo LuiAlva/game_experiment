@@ -23,8 +23,10 @@ namespace PlayerCharacter
 
         public void Update()
         {
+            float currentSpeed = Speed.GetCurrentSpeed();
+            PC.TestUi.UpdateActionStateText($"Speed:: {currentSpeed}");
             FindDirection();
-            PC.RigidBody.MovePosition((Vector2)PC.transform.position + (directionMovement * Speed.GetCurrentSpeed() * Time.deltaTime));
+            PC.RigidBody.MovePosition((Vector2)PC.transform.position + (directionMovement * currentSpeed * Time.deltaTime));
             PC.AnimatorBody.SetFloat("Velocity", directionMovement.sqrMagnitude * 1); // Replace 1 with animation speed???
             //PC.AnimatorBody.SetFloat("Move X", directionMovement.x);
             //PC.AnimatorBody.SetFloat("Move Y", directionMovement.y);
@@ -66,5 +68,8 @@ namespace PlayerCharacter
             }
             _isMoving = !(directionMovement == Vector2.zero);
         }
+
+
+
     }
 }

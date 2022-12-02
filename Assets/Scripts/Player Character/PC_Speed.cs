@@ -5,30 +5,67 @@ using UnityEngine;
 
 public class PC_Speed
 {
-    Stat Dexterity;
+    PC_Main PC;
+    Stat dexterity;
+    SM_MovementSpeed speedStates;
 
-    float _movementTypeSpeed;
+    float _movementTypeSpeedMultiplier;
+    float _baseSpeed = 2.5f;
+    float _bonusSpeed = 0f;
+
+    public enum SpeedType
+    {
+        Idle,
+        Leisurely,
+        Hasty,
+        Sneaky,
+        Weary
+    }
 
     public PC_Speed(PC_Main pc)
     {
-        Dexterity = pc.Stats.Dexterity;
-        _movementTypeSpeed = 1f;
+        PC = pc;
+        dexterity = pc.Stats.Dexterity;
+        speedStates = pc.States.MovementSpeedMachine;
+        _movementTypeSpeedMultiplier = 1f;
     }
 
     public float GetCurrentSpeed()
     {
-        return speedFromDexterity() * _movementTypeSpeed;
+        return (speedFromDexterity() * _movementTypeSpeedMultiplier) + _bonusSpeed;
     }
 
-    public void SetBaseSpeed(float moveTypeSpeed)
+    public void ChangeSpeedState(SpeedType speedType)
     {
-        _movementTypeSpeed = moveTypeSpeed;
+        if (speedStates.ChangeState(speedStates.stateList[speedType.ToString()]))
+        {
+            PC.TestUi.UpdateMovementStateText(speedType.ToString());
+            switch (speedType.ToString()){
+                case "Hasty":
+                    _movementTypeSpeedMultiplier = 1.5f;
+                    break;
+                case "Leisurely":
+                    _movementTypeSpeedMultiplier = 1f;
+                    break;
+                case "Sneaky":
+                    _movementTypeSpeedMultiplier = 0.7f;
+                    break;
+                case "Weary":
+                    _movementTypeSpeedMultiplier = 0.5f;
+                    break;
+            }
+        }
+    }
+    public void SetBonusSpeed(float value) => _bonusSpeed = value;
+
+    public void SetMovementTypeSpeedMultipler(float multiplier)
+    {
+        _movementTypeSpeedMultiplier = multiplier;
     }
 
     float speedFromDexterity()
     {
-        return ((((float)Math.Truncate(Dexterity.Value / 2)) * 0.1f) + 2.8f);
+        return (dexterity.Value / 22) + _baseSpeed;
     }
-
 
 }

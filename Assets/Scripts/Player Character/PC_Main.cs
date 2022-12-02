@@ -25,7 +25,7 @@ public class PC_Main : MonoBehaviour
         RigidBody = GetComponent<Rigidbody2D>();
         Inputs = GetComponent<PC_Inputs>();
         Stats = new Stats(this);
-        Stats.SetupStats(5, 3, 2, 4);
+        Stats.SetupStats(5, 3, 10, 4);
         Resources = new PC_Resources(this);
         States = new PC_States(this);
         Speed = new PC_Speed(this);

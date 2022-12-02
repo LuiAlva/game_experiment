@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class SM_MovementSpeed : StateMachine
 {
-    //Contains:
-    //• Moderate
-    //• Hurry
-    //• Sneak
+
     public SM_MovementSpeed(PC_Main pc)
     {
         PC = pc;
-        AddStates();
-    }
-    protected override void AddStates()
-    {
-        stateList.Add("Idle", new PC_StateIdle());
-        stateList.Add("Move", new PC_StateAttacking());
+        addState();
         CurrentState = stateList["Idle"];
+        CurrentState.Start(this);
     }
 
     public override void Update()
     {
+    }
+
+    protected override void addState()
+    {
+        stateList.Add("Idle", new State_MovementSpeedIdle());
+        stateList.Add("Leisurely", new State_MovementSpeedLeisurely());
+        stateList.Add("Hasty", new State_MovementSpeedHasty());
+        stateList.Add("Sneaky", new State_MovementSpeedSneaky());
+        stateList.Add("Weary", new State_MovementSpeedWeary());
     }
 }
