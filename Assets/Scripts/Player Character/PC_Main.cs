@@ -11,7 +11,7 @@ public class PC_Main : MonoBehaviour
     public SpriteRenderer AimSprite;
     public TestUI TestUi;
 
-    public PC_States States;
+    public States States;
     public PC_Inputs Inputs;
     public PC_Movement Movement;
     public PC_Speed Speed;
@@ -25,12 +25,12 @@ public class PC_Main : MonoBehaviour
         RigidBody = GetComponent<Rigidbody2D>();
         Inputs = GetComponent<PC_Inputs>();
         Stats = new Stats(this);
-        Stats.SetupStats(5, 3, 10, 4);
+        Stats.SetupStats(10, 3, 10, 4);
         Resources = new PC_Resources(this);
-        States = new PC_States(this);
         Speed = new PC_Speed(this);
         Movement = new PC_Movement(this);
         Aim = new PC_Aim(this);
+        States = new States(this);
     }
 
     // Update is called once per frame

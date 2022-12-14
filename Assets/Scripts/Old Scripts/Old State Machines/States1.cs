@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PC_States
+public class States1
 {
     public PC_Main PC;
 
-    public SM_MovementSpeed MovementSpeedMachine = null;
-    public SM_MovementType MovementTypeMachine = null;
+    public SM_MovementSpeed1 MovementSpeedMachine = null;
+    public SM_MovementType1 MovementTypeMachine = null;
     public StateMachine Action = null;
 
-    public PC_States(PC_Main pc)
+    public States1(PC_Main pc)
     {
         PC = pc;
-        MovementSpeedMachine = new SM_MovementSpeed(pc);
-        MovementTypeMachine = new SM_MovementType(pc);
+        MovementSpeedMachine = new SM_MovementSpeed1(pc);
+        MovementTypeMachine = new SM_MovementType1(pc);
     }
 
     public void Update()

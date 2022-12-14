@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SM_MovementSpeed : StateMachine
+public class SM_MovementSpeed1 : StateMachine
 {
 
-    public SM_MovementSpeed(PC_Main pc)
+    public SM_MovementSpeed1(PC_Main pc)
     {
         PC = pc;
         addState();

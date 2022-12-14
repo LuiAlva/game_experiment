@@ -29,7 +29,6 @@ namespace PlayerCharacter {
         {
             PC.Movement.Update();
             PC.Aim.Update(AimStickInput, AimMouseInput, MovementInput);
-            PC.States.Update();
             Attack.Update();
         }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SM_MovementType : StateMachine
+public class SM_MovementType1 : StateMachine
 {
     //Contains:
     //• Stand
@@ -12,7 +12,7 @@ public class SM_MovementType : StateMachine
     //• Hover
     //• Dodge
     //• Jump
-    public SM_MovementType(PC_Main pc)
+    public SM_MovementType1(PC_Main pc)
     {
         PC = pc;
         addState();

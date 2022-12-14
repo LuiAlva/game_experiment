@@ -5,12 +5,12 @@ using UnityEngine;
 public abstract class StateMachine
 {
     public PC_Main PC;
-    public State CurrentState = null;
-    public Dictionary<string, State> stateList = new Dictionary<string, State>();
+    public State1 CurrentState = null;
+    public Dictionary<string, State1> stateList = new Dictionary<string, State1>();
 
     public abstract void Update();
 
-    public bool ChangeState(State newState)
+    public bool ChangeState(State1 newState)
     {
         if (newState != CurrentState && CurrentState.CanLeave())
         {

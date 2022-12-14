@@ -58,6 +58,8 @@ namespace PlayerCharacter
             }
             HideAimSprite();
             AnimationDirection();
+            CharacterFacingDirection = CompassDirection(AimAngle);
+            PC.TestUi.UpdateFacingDirectionText(CharacterFacingDirection);
         }
 
         void StickAim(Vector2 StickInput)
@@ -111,27 +113,6 @@ namespace PlayerCharacter
             }
         }
 
-        void AnimationDirection1()
-        {
-            if (AimDirection == Vector2.zero) { return; }
-            PC.TestUi.UpdateTestText($"y: {AimDirection.y} :: x {AimDirection.x} :: AimAngle {AimAngle}");
-            if (System.Math.Abs(AimDirection.y) > System.Math.Abs(AimDirection.x))
-            {
-                if (AimDirection.y < 0) { FacingDirection = 0; } //Down
-                else { FacingDirection = 3; } //Up
-            }
-            else
-            {
-                if (AimDirection.x < 0) { FacingDirection = 1; } //Left
-                else { FacingDirection = 2; } //Right
-            }
-            if (AnimationDirectionChanged())
-            {
-                PC.AnimatorBody.SetFloat("Direction", FacingDirection);
-            }
-            CharacterFaceDirection();
-        }
-
         void AnimationDirection()
         {
             if (AimDirection == Vector2.zero) { return; }
@@ -143,23 +124,19 @@ namespace PlayerCharacter
             {
                 PC.AnimatorBody.SetFloat("Direction", FacingDirection);
             }
-            CharacterFaceDirection();
         }
 
-        void CharacterFaceDirection()
+        public string CompassDirection(float direction)
         {
-            if (AimAngle <= 157.5 && AimAngle >= 112.4999) { CharacterFacingDirection = "South West"; }
-            else if (AimAngle <= 112.5 && AimAngle >= 67.4999) { CharacterFacingDirection = "West"; }
-            else if (AimAngle <= 67.5 && AimAngle >= 22.4999) { CharacterFacingDirection = "North West"; }
-            else if (AimAngle <= 22.5 && AimAngle >= -22.4999) { CharacterFacingDirection = "North"; }
-            else if (AimAngle <= -22.5 && AimAngle >= -67.4999) { CharacterFacingDirection = "North East"; }
-            else if (AimAngle <= -67.5 && AimAngle >= -112.4999) { CharacterFacingDirection = "East"; }
-            else if (AimAngle <= -112.5 && AimAngle >= -157.4999) { CharacterFacingDirection = "South East"; }
-            else { CharacterFacingDirection = "South"; }
-            PC.TestUi.UpdateCharacterDirectionText(CharacterFacingDirection);
+            if (direction <= 157.5 && direction >= 112.4999) { return "South West"; }
+            else if (direction <= 112.5 && direction >= 67.4999) { return "West"; }
+            else if (direction <= 67.5 && direction >= 22.4999) { return "North West"; }
+            else if (direction <= 22.5 && direction >= -22.4999) { return "North"; }
+            else if (direction <= -22.5 && direction >= -67.4999) { return "North East"; }
+            else if (direction <= -67.5 && direction >= -112.4999) { return "East"; }
+            else if (direction <= -112.5 && direction >= -157.4999) { return "South East"; }
+            else { return "South"; }
         }
-
-
 
         bool AnimationDirectionChanged()
         {

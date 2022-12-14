@@ -7,7 +7,7 @@ public abstract class StatusEffects
     public PC_Main PC;
     public StatusEffect CurrentState = null;
     public bool IsSwimming;
-    protected Dictionary<string, State> statelist0 = null;
+    protected Dictionary<string, State1> statelist0 = null;
 
 
     protected abstract void AddStates();

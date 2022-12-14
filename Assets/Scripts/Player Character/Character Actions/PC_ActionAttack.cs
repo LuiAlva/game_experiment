@@ -18,13 +18,13 @@ public class PC_ActionAttack : Action
         timerFinish = false;
         timer = resetTime;
         active = true;
-        PC.Speed.ChangeSpeedState(PC_Speed.SpeedType.Sneaky);
+        PC.States.MovementSpeedStates.ChangeState(SM_MoveSpeed.EnumMoveSpeedStates.Sneaky);
         PC.Resources.Health.Resource.ChangeCurrentAmount(1.8f);
     }
 
     public void End()
     {
-        PC.Speed.ChangeSpeedState(PC_Speed.SpeedType.Leisurely);
+        PC.States.MovementSpeedStates.ResetSpeedAction();
         chargeActionComplete = false;
         active = false;
     }
@@ -46,7 +46,7 @@ public class PC_ActionAttack : Action
     void chargeAction()
     {
         Debug.Log("Charge Complete");
-        PC.Speed.ChangeSpeedState(PC_Speed.SpeedType.Weary);
+        PC.States.MovementSpeedStates.ChangeState(SM_MoveSpeed.EnumMoveSpeedStates.Weary);
         chargeActionComplete = true;
     }
 }

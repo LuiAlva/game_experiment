@@ -7,7 +7,10 @@ public class TestUI : MonoBehaviour
 {
     public PC_Main PC;
     [SerializeField] TMP_Text MovementStateText;
-    [SerializeField] TMP_Text CharacterDirectionText;
+    [SerializeField] TMP_Text MoveSpeedText;
+    [SerializeField] TMP_Text DirectionText;
+    [SerializeField] TMP_Text FacingText;
+    [SerializeField] TMP_Text PositionText;
     [SerializeField] TMP_Text ActionStateText;
     [SerializeField] TMP_Text StatusEffectListText;
     [SerializeField] TMP_Text TestText;
@@ -16,14 +19,35 @@ public class TestUI : MonoBehaviour
     {
         if (txt.Equals(MovementStateText.text)) { return; }
         if (txt.Equals(null)) { txt = "Error"; }
-        MovementStateText.text = $"Move State: {txt}";
+        MovementStateText.text = $"Movement: {txt}";
     }
 
-    public void UpdateCharacterDirectionText(string txt)
+    public void UpdateMoveSpeedText(string txt)
     {
-        if(txt.Equals(CharacterDirectionText.text)) { return; }
+        if (txt.Equals(MoveSpeedText.text)) { return; }
         if (txt.Equals(null)) { txt = "Error"; }
-        CharacterDirectionText.text = $"Facing Direction: {txt}";
+        MoveSpeedText.text = $"{txt}";
+    }
+
+    public void UpdateMoveDirectionText(string txt)
+    {
+        if (txt.Equals(DirectionText.text)) { return; }
+        if (txt.Equals(null)) { txt = "Error"; }
+        DirectionText.text = $"{txt}";
+    }
+
+    public void UpdateFacingDirectionText(string txt)
+    {
+        if (txt.Equals(PositionText.text)) { return; }
+        if (txt.Equals(null)) { txt = "Error"; }
+        FacingText.text = $"Facing: {txt}";
+    }
+
+    public void UpdatePositionText(string txt)
+    {
+        if (txt.Equals(PositionText.text)) { return; }
+        if (txt.Equals(null)) { txt = "Error"; }
+        PositionText.text = $"Position: {txt}";
     }
 
     public void UpdateActionStateText(string txt)
