@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PC_ActionAttack : Action
+public class ChargeAction : Action
 {
     float timer = 0;
     float resetTime = 1.6f;
@@ -11,28 +11,23 @@ public class PC_ActionAttack : Action
 
     bool chargeActionComplete = false;
 
-    public PC_ActionAttack(PC_Main pc) { PC = pc; }
-
     public override void Activate()
     {
         timerFinish = false;
         timer = resetTime;
         active = true;
-        PC.States.Movement.ChangeState(SM_Movement.Speeds.Sneaky);
-        PC.Resources.Health.Resource.ChangeCurrentAmount(1.8f);
     }
 
     public override void End()
     {
-        PC.States.Movement.ReleaseStateLock(SM_Movement.Locks.Sneak);
         chargeActionComplete = false;
         active = false;
     }
 
     public void Update()
     {
-        if(!active || chargeActionComplete) { return; }
-        if(timerFinish)
+        if (!active || chargeActionComplete) { return; }
+        if (timerFinish)
         {
             chargeAction();
         }
@@ -43,9 +38,8 @@ public class PC_ActionAttack : Action
         }
     }
 
-    void chargeAction()
+    protected virtual void chargeAction()
     {
-        Debug.Log("Charge Complete");
         chargeActionComplete = true;
     }
 }

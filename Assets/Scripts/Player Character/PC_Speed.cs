@@ -26,7 +26,7 @@ public class PC_Speed
     }
 
     public void SetBonusSpeed(float value) => _bonusSpeed = value;
-    public void SetMovementSpeedStateMultipler(float multiplier) => _movementSpeedStateMultiplier = multiplier;
+    public void SetMovementSpeedStateMultiplier(float multiplier) => _movementSpeedStateMultiplier = multiplier;
     public void SetMovementTypeStateMultiplier(float multipleir) => _movementTypeStateMultiplier = multipleir;
 
     float speedFromDexterity()

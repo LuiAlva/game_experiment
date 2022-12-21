@@ -9,5 +9,6 @@ public abstract class Action
 
     public virtual bool CanActivate() => true;
     public abstract void Activate();
+    public abstract void End();
 
 }

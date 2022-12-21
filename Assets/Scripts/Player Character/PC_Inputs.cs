@@ -11,31 +11,36 @@ namespace PlayerCharacter {
         public Vector2 AimMouseInput;
 
         PC_ActionDash Dash;
-        PC_ActionAttack Attack;
+        PC_ActionCrouch Crouch;
 
         private void Awake()
         {
             PC = GetComponent<PC_Main>();
-            Dash = new PC_ActionDash(PC);
-            Attack = new PC_ActionAttack(PC);
+            
         }
 
         private void Start()
         {
-            
+            Dash = new PC_ActionDash(PC);
+            Crouch = new PC_ActionCrouch(PC);
+
         }
 
         private void FixedUpdate()
         {
             PC.Movement.Update();
             PC.Aim.Update(AimStickInput, AimMouseInput, MovementInput);
-            Attack.Update();
+            Crouch.Update();
         }
 
+        bool x = true;
         public void OnAttack(InputAction.CallbackContext context)
         {
-            if (context.performed) { Attack.Activate(); }
-            if (context.canceled) { Attack.End(); }
+            
+            if (context.performed) { if (x) { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Water); x = false; }
+                else { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Air); x = true; }
+            }
+            if (context.canceled) { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Land); }
         }
         public void OnDash(InputAction.CallbackContext context)
         {
@@ -69,8 +74,8 @@ namespace PlayerCharacter {
         }
         public void OnCrouch(InputAction.CallbackContext context)
         {
-            if (context.performed) { Debug.Log("Crouch"); }
-            if (context.canceled) { }
+            if (context.performed) { Crouch.Activate(); }
+            if (context.canceled) { Crouch.End(); }
         }
         public void OnDodge(InputAction.CallbackContext context)
         {

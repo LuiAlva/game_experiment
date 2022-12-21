@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class States
 {
-    public SM_MoveSpeed MovementSpeedStates;
+    public SM_Movement Movement;
 
     public States(PC_Main pc)
     {
-        MovementSpeedStates = new SM_MoveSpeed(pc);
+        Movement = new SM_Movement(pc);
     }
 }
