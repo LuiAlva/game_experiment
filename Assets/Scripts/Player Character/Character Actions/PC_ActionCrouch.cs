@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PC_ActionCrouch : ChargeAction
+public class PC_ActionCrouch : Action
 {
     SM_Movement movement;
 
@@ -14,18 +10,11 @@ public class PC_ActionCrouch : ChargeAction
 
     public override void Activate()
     {
-        base.Activate();
         movement.ChangeState(SM_Movement.Speeds.Sneaky);
     }
 
     public override void End()
     {
         movement.ReleaseStateLock(SM_Movement.Locks.Sneak);
-        base.End();
-    }
-
-    protected override void chargeAction()
-    {
-        base.chargeAction();
     }
 }

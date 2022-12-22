@@ -1,20 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PC_Resources
+public class Resources
 {
     PC_Main PC;
     public Health Health;
+    public Magic Magic;
 
-    public PC_Resources(PC_Main pc)
+    public Resources(PC_Main pc)
     {
         PC = pc;
         Health = new Health(PC);
+        Magic = new Magic(PC);
     }
 
     public void Update()
     {
         Health.Update();
+        Magic.Update();
     }
 }

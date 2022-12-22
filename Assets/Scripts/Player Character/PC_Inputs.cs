@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,35 +11,30 @@ namespace PlayerCharacter {
 
         PC_ActionDash Dash;
         PC_ActionCrouch Crouch;
+        PC_ActionAttack Attack;
 
         private void Awake()
         {
             PC = GetComponent<PC_Main>();
-            
         }
 
         private void Start()
         {
             Dash = new PC_ActionDash(PC);
             Crouch = new PC_ActionCrouch(PC);
-
+            Attack = new PC_ActionAttack(PC);
         }
 
         private void FixedUpdate()
         {
             PC.Movement.Update();
             PC.Aim.Update(AimStickInput, AimMouseInput, MovementInput);
-            Crouch.Update();
+            Attack.Update();
         }
-
-        bool x = true;
         public void OnAttack(InputAction.CallbackContext context)
         {
-            
-            if (context.performed) { if (x) { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Water); x = false; }
-                else { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Air); x = true; }
-            }
-            if (context.canceled) { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Land); }
+            if (context.performed) { Attack.Activate(); }
+            if (context.canceled) { Attack.End(); }
         }
         public void OnDash(InputAction.CallbackContext context)
         {
@@ -52,10 +46,16 @@ namespace PlayerCharacter {
             if (context.performed) { Debug.Log("Secondary Action"); }
             if (context.canceled) {  }
         }
+        bool x = true;
         public void OnSkillOne(InputAction.CallbackContext context)
         {
-            if (context.performed) { Debug.Log("Skill One"); }
-            if (context.canceled) { }
+            if (context.performed)
+            {
+                Debug.Log("Skill One");
+                if (x) { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Water); x = false; }
+                else { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Air); x = true; }
+            }
+            if (context.canceled) { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Land); }
         }
         public void OnSkillTwo(InputAction.CallbackContext context)
         {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using PlayerCharacter;
 
@@ -17,7 +15,7 @@ public class PC_Main : MonoBehaviour
     public PC_Speed Speed;
     public PC_Aim Aim;
     public Stats Stats;
-    public PC_Resources Resources;
+    public Resources Resources;
 
     void Awake()
     {
@@ -26,7 +24,7 @@ public class PC_Main : MonoBehaviour
         Inputs = GetComponent<PC_Inputs>();
         Stats = new Stats(this);
         Stats.SetupStats(10, 3, 10, 4);
-        Resources = new PC_Resources(this);
+        Resources = new Resources(this);
         Speed = new PC_Speed(this);
         Movement = new PC_Movement(this);
         Aim = new PC_Aim(this);

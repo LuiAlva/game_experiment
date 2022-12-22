@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PC_ActionDash : Action
 {
     public PC_ActionDash(PC_Main pc) { PC = pc; }
     public override void Activate()
     {
         PC.States.Movement.ChangeState(SM_Movement.Speeds.Hasty);
-        PC.Resources.Health.Resource.ChangeCurrentAmount(-10);
+        PC.Resources.Health.Values.ChangeCurrentAmount(-10);
     }
 
     public override void End()

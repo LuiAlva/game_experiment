@@ -1,51 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PC_ActionAttack : Action
+public class PC_ActionAttack : ChargeAction
 {
-    float timer = 0;
-    float resetTime = 1.6f;
-    bool timerFinish = false;
-    bool active = false;
-
-    bool chargeActionComplete = false;
-
-    public PC_ActionAttack(PC_Main pc) { PC = pc; }
+    public PC_ActionAttack(PC_Main pc)
+    {
+        PC = pc;
+        resetTime = 2.3f;
+    }
 
     public override void Activate()
     {
-        timerFinish = false;
-        timer = resetTime;
-        active = true;
-        PC.States.Movement.ChangeState(SM_Movement.Speeds.Sneaky);
-        PC.Resources.Health.Resource.ChangeCurrentAmount(1.8f);
+        base.Activate();
+        PC.States.Movement.ChangeState(SM_Movement.Speeds.Hasty);
     }
 
     public override void End()
     {
-        PC.States.Movement.ReleaseStateLock(SM_Movement.Locks.Sneak);
-        chargeActionComplete = false;
-        active = false;
+        if (chargeActionComplete) { PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Land); }
+        else { PC.States.Movement.ReleaseStateLock(SM_Movement.Locks.Haste); }
+        base.End();
     }
 
-    public void Update()
+    protected override void chargeAction()
     {
-        if(!active || chargeActionComplete) { return; }
-        if(timerFinish)
-        {
-            chargeAction();
-        }
-        else
-        {
-            if (timer > 0) { timer -= Time.deltaTime; }
-            else { timerFinish = true; }
-        }
-    }
-
-    void chargeAction()
-    {
-        Debug.Log("Charge Complete");
-        chargeActionComplete = true;
+        PC.States.Movement.ReleaseStateLock(SM_Movement.Locks.Haste);
+        PC.States.Movement.ChangeMedium(SM_Movement.Mediums.Air);
+        base.chargeAction();
     }
 }

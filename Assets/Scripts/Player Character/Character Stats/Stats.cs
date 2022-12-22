@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Stats
@@ -58,6 +56,7 @@ public class Stats
         }
         if(Intelligence.Updated)
         {
+            PC.Resources.Magic.calcBaseMagicFromStat();
             PC.TestUi.UpdateIntelligenceText($"{Intelligence.Value}");
             Intelligence.Updated = false;
         }

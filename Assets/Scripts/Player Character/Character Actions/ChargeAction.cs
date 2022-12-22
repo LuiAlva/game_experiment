@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChargeAction : Action
 {
     float timer = 0;
-    float resetTime = 1.6f;
+    protected float resetTime = 1.6f;
     bool timerFinish = false;
     bool active = false;
 
-    bool chargeActionComplete = false;
+    protected bool chargeActionComplete = false;
 
     public override void Activate()
     {
