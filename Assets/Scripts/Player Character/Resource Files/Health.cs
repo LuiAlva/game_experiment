@@ -1,35 +1,19 @@
 using System;
 
-public class Health
+public class Health : Resource
 {
-    PC_Main PC;
-    Stat constitution;
-    public string Name = "Health";
-    public Resource Values;
-
     public Health(PC_Main pc)
     {
         PC = pc;
-        constitution = pc.Stats.Constitution;
-        Values = new Resource();
-        calcBaseHealthFromStat();
+        stat = pc.Stats.Constitution;
+        Values = new ResourceValue();
+        name = "Health";
+        statMultiplier = 12.32f;
+        calcBaseValueFromStat();
         Values.ChangeCurrentAmount(Values.MaxAmount);
-        Values.SetupRegen(0.8f,20f,40f);
+        Values.SetupRegen(0.8f, 20f, 40f);
     }
-
-    public void Update()
-    {
-        Values.Regenerate();
-        updateHealthDisplay();
-    }
-
-    public void calcBaseHealthFromStat()
-    {
-        Values.StatValue = (constitution.Value * 12f);
-        Values.Updated = true;
-    }
-
-    void updateHealthDisplay()
+    protected override void updateUI()
     {
         if (Values.Updated)
         {
@@ -37,5 +21,4 @@ public class Health
             Values.Updated = false;
         }
     }
-
 }

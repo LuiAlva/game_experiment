@@ -1,34 +1,19 @@
 using System;
 
-public class Magic
+public class Magic : Resource
 {
-    PC_Main PC;
-    Stat intelligence;
-    public Resource Values;
-
     public Magic(PC_Main pc)
     {
         PC = pc;
-        intelligence = pc.Stats.Intelligence;
-        Values = new Resource();
-        calcBaseMagicFromStat();
+        stat = pc.Stats.Intelligence;
+        Values = new ResourceValue();
+        name = "Magic";
+        statMultiplier = 2.3f;
+        calcBaseValueFromStat();
         Values.ChangeCurrentAmount(Values.MaxAmount);
         Values.SetupRegen(0.8f, 20f, 40f);
     }
-
-    public void Update()
-    {
-        Values.Regenerate();
-        updateMagicDisplay();
-    }
-
-    public void calcBaseMagicFromStat()
-    {
-        Values.StatValue = (intelligence.Value * 2.6f);
-        Values.Updated = true;
-    }
-
-    void updateMagicDisplay()
+    protected override void updateUI()
     {
         if (Values.Updated)
         {

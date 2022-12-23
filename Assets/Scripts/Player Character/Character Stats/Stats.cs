@@ -38,7 +38,7 @@ public class Stats
     {
         if(Constitution.Updated)
         {
-            PC.Resources.Health.calcBaseHealthFromStat();
+            PC.Resources.Health.calcBaseValueFromStat();
             PC.TestUi.UpdateConstitutionText($"{Constitution.Value}");
             Constitution.Updated = false;
         }
@@ -50,13 +50,14 @@ public class Stats
         }
         if(Dexterity.Updated)
         {
+            PC.Resources.Magic.calcBaseValueFromStat();
             PC.TestUi.UpdateDexterityText($"{Dexterity.Value}");
             Defense.Updated = true;
             Dexterity.Updated = false;
         }
         if(Intelligence.Updated)
         {
-            PC.Resources.Magic.calcBaseMagicFromStat();
+            PC.Resources.Magic.calcBaseValueFromStat();
             PC.TestUi.UpdateIntelligenceText($"{Intelligence.Value}");
             Intelligence.Updated = false;
         }
