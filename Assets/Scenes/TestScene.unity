@@ -1498,7 +1498,7 @@ GameObject:
   - component: {fileID: 278916175}
   - component: {fileID: 278916176}
   m_Layer: 5
-  m_Name: Speed Text (TMP) (1)
+  m_Name: Speed Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2607,7 +2607,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 120}
+  m_SizeDelta: {x: 400, y: 140}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &781466442
 MonoBehaviour:
@@ -2629,11 +2629,11 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!1 &800565264
 GameObject:
@@ -5976,22 +5976,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PC: {fileID: 1830341794}
-  MovementStateText: {fileID: 729124968}
-  MoveSpeedText: {fileID: 278916176}
-  DirectionText: {fileID: 554124968}
-  FacingText: {fileID: 335305165}
-  PositionText: {fileID: 83587304}
-  ActionStateText: {fileID: 1413178890}
-  StatusEffectListText: {fileID: 1243110744}
-  TestText: {fileID: 1378337494}
-  ConstitutionText: {fileID: 2085402717}
-  StrengthText: {fileID: 1493985667}
-  DexterityText: {fileID: 124212300}
-  IntelligenceText: {fileID: 724796222}
-  DefenseText: {fileID: 1376032010}
-  HealthText: {fileID: 716431324}
-  StaminaText: {fileID: 1712959639}
-  ManaText: {fileID: 27858160}
+  <MovementStateText>k__BackingField: {fileID: 729124968}
+  <MoveSpeedText>k__BackingField: {fileID: 278916176}
+  <DirectionText>k__BackingField: {fileID: 554124968}
+  <FacingText>k__BackingField: {fileID: 335305165}
+  <PositionText>k__BackingField: {fileID: 83587304}
+  <ActionStateText>k__BackingField: {fileID: 1413178890}
+  <StatusEffectListText>k__BackingField: {fileID: 1243110744}
+  <TestText>k__BackingField: {fileID: 1378337494}
+  <ConstitutionText>k__BackingField: {fileID: 2085402717}
+  <StrengthText>k__BackingField: {fileID: 1493985667}
+  <DexterityText>k__BackingField: {fileID: 124212300}
+  <IntelligenceText>k__BackingField: {fileID: 724796222}
+  <DefenseText>k__BackingField: {fileID: 1376032010}
+  <HealthText>k__BackingField: {fileID: 716431324}
+  <StaminaText>k__BackingField: {fileID: 1712959639}
+  <ManaText>k__BackingField: {fileID: 27858160}
 --- !u!1 &1376032008
 GameObject:
   m_ObjectHideFlags: 0
@@ -6368,7 +6368,7 @@ MonoBehaviour:
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 0.82
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
@@ -6382,8 +6382,8 @@ MonoBehaviour:
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
+  m_horizontalMapping: 1
+  m_verticalMapping: 1
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
@@ -6616,7 +6616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 530, y: -230}
+  m_AnchoredPosition: {x: 380, y: -240}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1524668213

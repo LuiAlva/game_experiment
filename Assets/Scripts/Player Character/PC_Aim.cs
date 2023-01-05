@@ -1,4 +1,5 @@
 using UnityEngine;
+using CustomExtensions;
 
 namespace PlayerCharacter
 {
@@ -57,7 +58,7 @@ namespace PlayerCharacter
             HideAimSprite();
             AnimationDirection();
             CharacterFacingDirection = CompassDirection(AimAngle);
-            PC.TestUi.UpdateFacingDirectionText(CharacterFacingDirection);
+            PC.TestUi.FacingText.LabeledText("Aim", CharacterFacingDirection);
         }
 
         void StickAim(Vector2 StickInput)

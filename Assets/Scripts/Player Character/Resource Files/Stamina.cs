@@ -1,15 +1,15 @@
 using System;
 using CustomExtensions;
 
-public class Health : Resource
+public class Stamina : Resource
 {
-    public Health(PC_Main pc)
+    public Stamina(PC_Main pc)
     {
         PC = pc;
-        stat = pc.Stats.Constitution;
+        stat = pc.Stats.Dexterity;
         Values = new ResourceValue();
-        name = "Health";
-        statMultiplier = 12.32f;
+        name = "Stamina";
+        statMultiplier = 10.43f;
         calcBaseValueFromStat();
         Values.ChangeCurrentAmount(Values.MaxAmount);
         Values.SetupRegen(0.8f, 20f, 40f);
@@ -18,7 +18,7 @@ public class Health : Resource
     {
         if (Values.Updated)
         {
-            PC.TestUi.HealthText.LabeledText(name, $"{Math.Truncate(Values.CurrentAmount)}/{Math.Truncate(Values.MaxAmount)}");
+            PC.TestUi.StaminaText.LabeledText(name, $"{Math.Truncate(Values.CurrentAmount)}/{Math.Truncate(Values.MaxAmount)}");
             Values.Updated = false;
         }
     }

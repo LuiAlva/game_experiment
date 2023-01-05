@@ -1,4 +1,5 @@
 using UnityEngine;
+using CustomExtensions;
 
 public class Stats
 {
@@ -26,7 +27,7 @@ public class Stats
         Strength.SetBase(baseStrength);
         Dexterity.SetBase(baseDexterity);
         Intelligence.SetBase(baseIntelligence);
-        Defense.SetBase(calcDefense());
+        Defense.SetBase(CalcDefense());
     }
 
     public void Update()
@@ -39,35 +40,35 @@ public class Stats
         if(Constitution.Updated)
         {
             PC.Resources.Health.calcBaseValueFromStat();
-            PC.TestUi.UpdateConstitutionText($"{Constitution.Value}");
+            PC.TestUi.ConstitutionText.LabeledText("Constitution", Constitution.Value.ToString());
             Constitution.Updated = false;
         }
         if(Strength.Updated)
         {
-            PC.TestUi.UpdateStrengthText($"{Strength.Value}");
+            PC.TestUi.StrengthText.LabeledText("Strength", Strength.Value.ToString());
             Defense.Updated = true;
             Strength.Updated = false;
         }
         if(Dexterity.Updated)
         {
             PC.Resources.Magic.calcBaseValueFromStat();
-            PC.TestUi.UpdateDexterityText($"{Dexterity.Value}");
+            PC.TestUi.DexterityText.LabeledText("Dexterity", $"{Dexterity.Value}");
             Defense.Updated = true;
             Dexterity.Updated = false;
         }
         if(Intelligence.Updated)
         {
             PC.Resources.Magic.calcBaseValueFromStat();
-            PC.TestUi.UpdateIntelligenceText($"{Intelligence.Value}");
+            PC.TestUi.IntelligenceText.LabeledText("Intelligence", Intelligence.Value.ToString());
             Intelligence.Updated = false;
         }
         if(Defense.Updated)
         {
-            PC.TestUi.UpdateDefenseText($"{Defense.Value}");
-            Defense.SetBase(calcDefense());
+            PC.TestUi.DefenseText.LabeledText("Defense", Defense.Value.ToString());
+            Defense.SetBase(CalcDefense());
             Defense.Updated = false;
         }
     }
 
-    float calcDefense() => Mathf.Max(1,(Constitution.Value / 2)) + Mathf.Max(1,(Dexterity.Value / 2));
+    float CalcDefense() => Mathf.Max(1,(Constitution.Value / 2)) + Mathf.Max(1,(Dexterity.Value / 2));
 }

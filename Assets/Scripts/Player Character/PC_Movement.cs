@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using CustomExtensions;
 
 namespace PlayerCharacter
 {
@@ -23,12 +24,12 @@ namespace PlayerCharacter
 
         public void Update()
         {
-            float currentSpeed = Speed.GetCurrentSpeed();
+            float currentSpeed = Speed.Current;
             CurrentSpeed = currentSpeed * directionMovement.sqrMagnitude;
             PC.States.Movement.RevertSpeedToLeisurely();
-            PC.TestUi.UpdateMoveSpeedText($"{Math.Round(CurrentSpeed, 2)}");
-            PC.TestUi.UpdateMoveDirectionText($"{PC.Aim.CompassDirection(Mathf.Atan2(-directionMovement.x, directionMovement.y) * Mathf.Rad2Deg)}");
-            PC.TestUi.UpdatePositionText($"x: {Math.Round(PC.gameObject.transform.position.x,3)}, y: {Math.Round(PC.gameObject.transform.position.y,3)}");
+            PC.TestUi.MoveSpeedText.LabeledText("", Math.Round(CurrentSpeed, 2).ToString());
+            PC.TestUi.DirectionText.LabeledText("", PC.Aim.CompassDirection(Mathf.Atan2(-directionMovement.x, directionMovement.y) * Mathf.Rad2Deg).ToString());
+            PC.TestUi.PositionText.LabeledText("Position", $"x: {Math.Round(PC.gameObject.transform.position.x,3)}, y: {Math.Round(PC.gameObject.transform.position.y,3)}");
             FindDirection();
             PC.RigidBody.MovePosition((Vector2)PC.transform.position + (directionMovement * currentSpeed * Time.deltaTime));
             PC.AnimatorBody.SetFloat("Velocity", directionMovement.sqrMagnitude * 1); // Replace 1 with animation speed???
@@ -72,8 +73,5 @@ namespace PlayerCharacter
             }
             _isMoving = !(directionMovement == Vector2.zero);
         }
-
-
-
     }
 }

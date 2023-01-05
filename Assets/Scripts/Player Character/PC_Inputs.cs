@@ -13,6 +13,9 @@ namespace PlayerCharacter {
         PC_ActionCrouch Crouch;
         PC_ActionAttack Attack;
 
+        StatusEffectSlow statusSlow;
+        StatusEffectDefense statusDefense;
+
         private void Awake()
         {
             PC = GetComponent<PC_Main>();
@@ -20,6 +23,8 @@ namespace PlayerCharacter {
 
         private void Start()
         {
+            statusSlow = new StatusEffectSlow();
+            statusDefense = new StatusEffectDefense();
             Dash = new PC_ActionDash(PC);
             Crouch = new PC_ActionCrouch(PC);
             Attack = new PC_ActionAttack(PC);
@@ -30,6 +35,7 @@ namespace PlayerCharacter {
             PC.Movement.Update();
             PC.Aim.Update(AimStickInput, AimMouseInput, MovementInput);
             Attack.Update();
+            PC.StatusEffects.Update();
         }
         public void OnAttack(InputAction.CallbackContext context)
         {
@@ -43,7 +49,11 @@ namespace PlayerCharacter {
         }
         public void OnSecondaryAction(InputAction.CallbackContext context)
         {
-            if (context.performed) { Debug.Log("Secondary Action"); }
+            if (context.performed)
+            {
+                Debug.Log("Secondary Action");
+                PC.StatusEffects.AddEffect(statusSlow);
+            }
             if (context.canceled) {  }
         }
         bool x = true;
@@ -59,7 +69,11 @@ namespace PlayerCharacter {
         }
         public void OnSkillTwo(InputAction.CallbackContext context)
         {
-            if (context.performed) { Debug.Log("Skill Two"); }
+            if (context.performed)
+            {
+                Debug.Log("Skill Two");
+                PC.StatusEffects.AddEffect(statusDefense);
+            }
             if (context.canceled) { }
         }
         public void OnSkillThree(InputAction.CallbackContext context)

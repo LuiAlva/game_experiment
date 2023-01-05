@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PC_Actions
+public class Actions
 {
-    public void Update()
-    {
+    PC_Main PC;
 
-    }
 }

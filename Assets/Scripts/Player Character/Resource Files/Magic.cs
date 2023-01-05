@@ -1,4 +1,5 @@
 using System;
+using CustomExtensions;
 
 public class Magic : Resource
 {
@@ -17,7 +18,7 @@ public class Magic : Resource
     {
         if (Values.Updated)
         {
-            PC.TestUi.UpdateManaText($"{Math.Truncate(Values.CurrentAmount)}/{Math.Truncate(Values.MaxAmount)}");
+            PC.TestUi.ManaText.LabeledText(name, $"{Math.Truncate(Values.CurrentAmount)}/{Math.Truncate(Values.MaxAmount)}");
             Values.Updated = false;
         }
     }

@@ -6,15 +6,17 @@ public abstract class Resource
     protected float statMultiplier = 1f;
     public ResourceValue Values;
     public string Name => name;
+
     public virtual void Update()
     {
         Values.Regenerate();
-        calcBaseValueFromStat();
         updateUI();
     }
     public virtual void calcBaseValueFromStat()
     {
         Values.SetBaseStat(stat.Value * statMultiplier);
     }
+    public void Spend(float amount) => Values.ChangeCurrentAmount(-amount);
+    public void Add(float amount) => Values.ChangeCurrentAmount(amount);
     protected abstract void updateUI();
 }

@@ -1,3 +1,5 @@
+using CustomExtensions;
+
 public class SM_Movement
 {
     PC_Main PC;
@@ -133,7 +135,7 @@ public class SM_Movement
             else if (CurrentMedium == Mediums.Water) { CurrentMovementName = "Wading"; }
             else if (CurrentMedium == Mediums.Air) { CurrentMovementName = "Idle Hover"; }
         }
-        speed.SetMovementSpeedStateMultiplier(mediumSpeed * stateSpeed);
-        PC.TestUi.UpdateMovementStateText(CurrentMovementName);
+        speed.SetMovementStateMultiplier(mediumSpeed * stateSpeed);
+        PC.TestUi.MovementStateText.LabeledText("Movement", CurrentMovementName);
     }
 }

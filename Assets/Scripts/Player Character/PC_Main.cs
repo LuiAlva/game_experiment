@@ -10,6 +10,7 @@ public class PC_Main : MonoBehaviour
     public TestUI TestUi;
 
     public States States;
+    public StatusEffects StatusEffects;
     public PC_Inputs Inputs;
     public PC_Movement Movement;
     public PC_Speed Speed;
@@ -29,6 +30,7 @@ public class PC_Main : MonoBehaviour
         Movement = new PC_Movement(this);
         Aim = new PC_Aim(this);
         States = new States(this);
+        StatusEffects = new StatusEffects(this);
     }
 
     // Update is called once per frame
